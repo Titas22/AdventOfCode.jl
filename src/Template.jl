@@ -1,4 +1,4 @@
-module AoC_2024_xx
+module AoC_2025_xx
     using AdventOfCode
     const AoC = AdventOfCode
 

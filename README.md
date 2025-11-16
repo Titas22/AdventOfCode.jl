@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 [![ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://img.shields.io/badge/ColPrac-Contributor's%20Guide-blueviolet)](https://github.com/SciML/ColPrac)
-![Badge](https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2FTitas22%2FAdventOfCode.jl&label=Hits&icon=github&color=%2320c997&message=&style=flat&tz=UTC)
+[![Badge](https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2FTitas22%2FAdventOfCode.jl&label=Hits&icon=github&color=%2320c997&message=&style=flat&tz=UTC)](https://hitscounter.dev/)
 ![Repo Size](https://img.shields.io/github/repo-size/Titas22/AdventOfCode.jl)
 
 My [Advent of Code](https://adventofcode.com/) submissions in [Julia](https://julialang.org/).

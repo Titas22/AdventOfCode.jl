@@ -1,4 +1,4 @@
-@export macro getinputs(btest::Union{Symbol, Expr, Bool} = false, extra::AbstractString = "", use_cache::Bool=USE_INPUTS_CACHE)
+@export macro getinputs(btest::Union{Symbol, Expr, Bool} = false, extra::AbstractString = "", use_cache::Union{Symbol, Expr, Bool}=USE_INPUTS_CACHE)
     calling_file = String(__source__.file);
     @assert(!startswith(calling_file, "REPL"), "Cannot use @getinputs macro from REPL. Use getinputs(day, year, btest; use_cache).")
     ex = quote

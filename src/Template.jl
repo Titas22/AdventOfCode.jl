@@ -21,8 +21,8 @@ module AoC_2025_xx
         return nothing
     end
 
-    function solve(btest::Bool = false)::Tuple{Any, Any}
-        lines       = @getinputs(btest)
+    function solve(btest::Bool = false; use_input_cache::Bool = false)::Tuple{Any, Any}
+        lines  = @getinputs(btest, "", use_input_cache)
         # lines2      = @getinputs(btest, "_2") # Use if 2nd problem test case inputs are different
         inputs      = parse_inputs(lines)
 

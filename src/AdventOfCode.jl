@@ -10,6 +10,8 @@ module AdventOfCode
     const DEFAULT_YEAR          = Dates.year(Dates.today()) - (Dates.value(Dates.Month(Dates.today())) > 10 ? 0 : 1);
     const DEFAULT_SOLVED_DAYS   = 1:25;
 
+    const USE_INPUTS_CACHE      = false;
+
     include("Inputs.jl")
     
     include("Benchmarks.jl")
@@ -47,6 +49,33 @@ module AdventOfCode
         b < 100000000000 && return 11;
         b < 1000000000000 && return 12;
         return floor(Int, log10(b)) + 1; # Backup
+    end
+
+    @export @inline function parse_int_ascii(s::AbstractString)::Int
+        cu = codeunits(s)  # UInt8 view, avoids Unicode indexing
+        num_chars = length(cu)
+        num_chars == 0 && error("empty string in parse_int_ascii")
+
+        is_negative = false
+        idx = 1
+
+        # optional sign
+        b = cu[idx]
+        if b == UInt8('+') # '+' = 0x2b
+            idx += 1
+        elseif b == UInt8('-') # '-' = 0x2d
+            is_negative = true
+            idx += 1
+        end
+
+        val::Int = 0
+        @inbounds @simd for jdx in idx:num_chars
+            d = cu[jdx] - UInt8('0')  # '0' = 0x30
+            d > 9 && error("non-digit in parse_int_ascii: $(Char(cu[jdx]))")
+            val = val * 10 + d
+        end
+
+        return is_negative ? -val : val
     end
 
 end # module AdventOfCode

@@ -1,8 +1,8 @@
-@export macro getinputs(btest::Union{Symbol, Expr, Bool} = false, extra::AbstractString = "")
+@export macro getinputs(btest::Union{Symbol, Expr, Bool} = false, extra::AbstractString = "", use_cache::Union{Symbol, Expr, Bool}=USE_INPUTS_CACHE)
     calling_file = String(__source__.file);
-    @assert(!startswith(calling_file, "REPL"), "Cannot use @getinputs macro from REPL. Use getinputs(day, year, btest).")
+    @assert(!startswith(calling_file, "REPL"), "Cannot use @getinputs macro from REPL. Use getinputs(day, year, btest; use_cache).")
     ex = quote
-        getinputs($(calling_file), $(esc(btest)), $(esc(extra)))
+        getinputs($(calling_file), $(esc(btest)), $(esc(extra)); use_cache=$(esc(use_cache)))
     end
     # @show ex
 end
@@ -22,7 +22,7 @@ _year_day_inputs_path(day::Integer, year::Integer, btest::Bool, extra::AbstractS
     return (parse(Int, yydd[2]), parse(Int, yydd[1])); # (day, year)
 end
 
-@export getinputs(solution_file::String, btest::Bool = false, extra::AbstractString = "") = getinputs(get_day_year(solution_file)..., btest, extra);
+@export getinputs(solution_file::String, btest::Bool = false, extra::AbstractString = ""; use_cache::Bool = USE_INPUTS_CACHE) = getinputs(get_day_year(solution_file)..., btest, extra; use_cache = use_cache);
 
 @export function fast_readlines(filepath::String)::Vector{String}
     io = open(filepath, "r")
@@ -34,13 +34,27 @@ end
     return lines
 end
 
-@export function getinputs(day::Integer, year::Integer = DEFAULT_YEAR, btest::Bool = false, extra::AbstractString = "")::Vector{String}
+@export function fast_readlines_test(filepath::String)
+    # This looked faster but when benchmarking in solution is not
+    data = readchomp(filepath)
+    return split(data, r"\n|\r\n")
+end
+
+const _input_cache = Dict{String,Vector{String}}()
+
+@export function getinputs(day::Integer, year::Integer = DEFAULT_YEAR, btest::Bool = false, extra::AbstractString = ""; use_cache::Bool = USE_INPUTS_CACHE)::Vector{String}
     filepath = _year_day_inputs_path(day, year, btest, extra);
+
+    if use_cache && haskey(_input_cache, filepath)
+        return _input_cache[filepath]
+    end
     
     isfile(filepath) || _download_inputs(day, year, btest);
-    
-    return fast_readlines(filepath);
-    # return readlines(filepath);
+
+    lines = fast_readlines(filepath)
+    _input_cache[filepath] = lines
+    return lines
+
 end
 
 function _download_inputs(day::Integer, year::Integer, btest::Bool)

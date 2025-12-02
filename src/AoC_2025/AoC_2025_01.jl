@@ -1,11 +1,16 @@
 module AoC_2025_01
     using AdventOfCode
-    using Parsers;
     const AoC = AdventOfCode
 
-    parse_line(line::String)::Int64 = (line[1] == 'R' ? 1 : -1) * Parsers.parse(Int64, line[2:end])
+    parse_line(line::String)::Int64 = (line[1] == 'R' ? 1 : -1) * parse_int_ascii(@view line[2:end])
 
-    parse_inputs(lines::Vector{String})::Vector{Int64} = parse_line.(lines)
+    function parse_inputs(lines::Vector{String})
+        results = Vector{Int64}(undef, length(lines))
+        @inbounds @simd for idx in eachindex(lines)
+            results[idx] = parse_line(lines[idx])
+        end
+        return results
+    end
 
     function solve_common(rotations::Vector{Int64})::Tuple{Int64, Int64}
         pos = 50
@@ -33,8 +38,8 @@ module AoC_2025_01
         return (zero_count, zero_crosses)
     end
 
-    function solve(btest::Bool = false)::Tuple{Any, Any}
-        lines  = @getinputs(btest)
+    function solve(btest::Bool = false; use_input_cache::Bool = false)::Tuple{Any, Any}
+        lines  = @getinputs(btest, "", use_input_cache)
         inputs = parse_inputs(lines)
 
         (part1, part2) = solve_common(inputs)

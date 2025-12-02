@@ -23,20 +23,20 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 ![Runtime: 0.437ms](https://img.shields.io/badge/Total%20Run%20Time-0.437%20ms-purple)
 ![Memory: 257KiB](https://img.shields.io/badge/Total%20Memory-257.3%20KiB-blue)
 
-| Day | Problem | Time | Allocated memory | Source |
-|----:|:-------:|-----:|-----------------:|:------:|
-| 01 | [Secret Entrance](https://adventofcode.com/2025/day/1) | 437.100 μs | 257.33 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_01.jl) |
-| 02 | [](https://adventofcode.com/2025/day/2) | - s | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
-| 03 | [](https://adventofcode.com/2025/day/3) | - s | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
-| 04 | [](https://adventofcode.com/2025/day/4) | - s | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
-| 05 | [](https://adventofcode.com/2025/day/5) | - s | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
-| 06 | [](https://adventofcode.com/2025/day/6) | - s | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
-| 07 | [](https://adventofcode.com/2025/day/7) | - s | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
-| 08 | [](https://adventofcode.com/2025/day/8) | - s | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
-| 09 | [](https://adventofcode.com/2025/day/9) | - s | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
-| 10 | [](https://adventofcode.com/2025/day/10) | - s | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
-| 11 | [](https://adventofcode.com/2025/day/11) | - s | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
-| 12 | [](https://adventofcode.com/2025/day/12) | - s | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| Day | Problem | Total Time | Time (w/ input cache) | Total Memory | Memory (w/ input cache) | Source |
+|----:|:-------:|-----:|-----------------:|-----:|-----------------:|:------:|
+| 01 | [Secret Entrance](https://adventofcode.com/2025/day/1) | 437.100 μs | 83.900 μs | 257.33 KiB | 36.57 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_01.jl) |
+| 02 | [](https://adventofcode.com/2025/day/2) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 03 | [](https://adventofcode.com/2025/day/3) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 04 | [](https://adventofcode.com/2025/day/4) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 05 | [](https://adventofcode.com/2025/day/5) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 06 | [](https://adventofcode.com/2025/day/6) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 07 | [](https://adventofcode.com/2025/day/7) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 08 | [](https://adventofcode.com/2025/day/8) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 09 | [](https://adventofcode.com/2025/day/9) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 10 | [](https://adventofcode.com/2025/day/10) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 11 | [](https://adventofcode.com/2025/day/11) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 12 | [](https://adventofcode.com/2025/day/12) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 
 ---
 

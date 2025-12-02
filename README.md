@@ -23,8 +23,8 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 ![Runtime: 0.437ms](https://img.shields.io/badge/Total%20Run%20Time-0.437%20ms-purple)
 ![Memory: 257KiB](https://img.shields.io/badge/Total%20Memory-257.3%20KiB-blue)
 
-| Day | Problem | Total Time | Time (w/ input cache) | Total Memory | Memory (w/ input cache) | Source |
-|----:|:-------:|-----:|-----------------:|-----:|-----------------:|:------:|
+| Day | Problem | Total Time | Time (cached) | Total Memory | Memory (cached) | Source |
+|----:|:----------------:|:-----:|:------------:|:-----:|:------------:|:------:|
 | 01 | [Secret Entrance](https://adventofcode.com/2025/day/1) | 437.100 μs | 83.900 μs | 257.33 KiB | 36.57 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_01.jl) |
 | 02 | [](https://adventofcode.com/2025/day/2) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 | 03 | [](https://adventofcode.com/2025/day/3) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |

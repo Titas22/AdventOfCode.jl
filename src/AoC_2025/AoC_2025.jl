@@ -33,4 +33,7 @@ module AoC_2025
     # include("./AoC_2025_01.jl")
     # # import  ..AoC_2025_01;
     # display(@benchmark (part1, part2) = AoC_2025_01.solve());
+
+    # With input caching (each line as string)
+    # @benchmark (part1, part2) = AoC_2025_01.solve(use_input_cache=true)
 end 

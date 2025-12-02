@@ -38,8 +38,8 @@ module AoC_2025_01
         return (zero_count, zero_crosses)
     end
 
-    function solve(btest::Bool = false)::Tuple{Any, Any}
-        lines  = @getinputs(btest)
+    function solve(btest::Bool = false; use_input_cache::Bool = false)::Tuple{Any, Any}
+        lines  = @getinputs(btest, "", use_input_cache)
         inputs = parse_inputs(lines)
 
         (part1, part2) = solve_common(inputs)

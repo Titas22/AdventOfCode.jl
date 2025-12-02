@@ -38,6 +38,9 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 | 11 | [](https://adventofcode.com/2025/day/11) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 | 12 | [](https://adventofcode.com/2025/day/12) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 
+> \* Cached time/memory shows the results of solution without the time taken to read the inputs from file.
+> Parsing of the inputs is still included (from the `Vector{String}` format)
+
 ---
 
 The benchmarks have been measured on this machine:

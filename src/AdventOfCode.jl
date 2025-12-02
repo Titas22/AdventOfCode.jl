@@ -10,6 +10,8 @@ module AdventOfCode
     const DEFAULT_YEAR          = Dates.year(Dates.today()) - (Dates.value(Dates.Month(Dates.today())) > 10 ? 0 : 1);
     const DEFAULT_SOLVED_DAYS   = 1:25;
 
+    const USE_INPUTS_CACHE      = false;
+
     include("Inputs.jl")
     
     include("Benchmarks.jl")

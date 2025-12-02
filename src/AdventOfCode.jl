@@ -49,4 +49,31 @@ module AdventOfCode
         return floor(Int, log10(b)) + 1; # Backup
     end
 
+    @export @inline function parse_int_ascii(s::AbstractString)::Int
+        cu = codeunits(s)  # UInt8 view, avoids Unicode indexing
+        num_chars = length(cu)
+        num_chars == 0 && error("empty string in parse_int_ascii")
+
+        is_negative = false
+        idx = 1
+
+        # optional sign
+        b = cu[idx]
+        if b == UInt8('+') # '+' = 0x2b
+            idx += 1
+        elseif b == UInt8('-') # '-' = 0x2d
+            is_negative = true
+            idx += 1
+        end
+
+        val::Int = 0
+        @inbounds @simd for jdx in idx:num_chars
+            d = cu[jdx] - UInt8('0')  # '0' = 0x30
+            d > 9 && error("non-digit in parse_int_ascii: $(Char(cu[jdx]))")
+            val = val * 10 + d
+        end
+
+        return is_negative ? -val : val
+    end
+
 end # module AdventOfCode

@@ -23,7 +23,7 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 ![Runtime: 0.437ms](https://img.shields.io/badge/Total%20Run%20Time-0.437%20ms-purple)
 ![Memory: 257KiB](https://img.shields.io/badge/Total%20Memory-257.3%20KiB-blue)
 
-| Day | Problem | Total Time | Time (cached) | Total Memory | Memory (cached) | Source |
+| Day | Problem | Total Time | Time (algo) | Total Memory | Memory (algo) | Source |
 |----:|:----------------:|:-----:|:------------:|:-----:|:------------:|:------:|
 | 01 | [Secret Entrance](https://adventofcode.com/2025/day/1) | 437.100 μs | 83.900 μs | 257.33 KiB | 36.57 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_01.jl) |
 | 02 | [Gift Shop](https://adventofcode.com/2025/day/2) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_02.jl) |
@@ -38,7 +38,7 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 | 11 | [](https://adventofcode.com/2025/day/11) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 | 12 | [](https://adventofcode.com/2025/day/12) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 
-> \* Cached time/memory shows the results of solution without the time taken to read the inputs from file.
+> \* Algo time/memory shows the results of solution without the time taken to read the inputs from file.
 > Parsing of the inputs is still included (from the `Vector{String}` format)
 
 ---

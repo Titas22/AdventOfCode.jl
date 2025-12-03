@@ -19,7 +19,7 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 
 ## Summary
 
-![4/24](https://img.shields.io/badge/2025-2/24-yellow)
+![4/24](https://img.shields.io/badge/2025-4/24-yellow)
 ![Runtime: 0.612ms](https://img.shields.io/badge/Total%20Run%20Time-0.612%20ms-purple)
 ![Memory: 298KiB](https://img.shields.io/badge/Total%20Memory-279.9%20KiB-blue)
 

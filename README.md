@@ -1,6 +1,7 @@
 # AdventOfCode.jl
 
 [![Julia](https://img.shields.io/badge/Julia-9558B2?style=flat&logo=Julia&logoColor=white)](https://julialang.org/)
+[![Total: 107](https://img.shields.io/badge/🎄AoC-⭐107-forestgreen?labelColor=darkred)](https://adventofcode.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 [![ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://img.shields.io/badge/ColPrac-Contributor's%20Guide-blueviolet)](https://github.com/SciML/ColPrac)
@@ -19,7 +20,7 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 
 ## Summary
 
-![4/24](https://img.shields.io/badge/2025-4/24-yellow)
+![4/24](https://img.shields.io/badge/🎄2025-⭐4/24-royalblue?labelColor=darkred)
 ![Runtime: 0.612ms](https://img.shields.io/badge/Total%20Run%20Time-0.612%20ms-purple)
 ![Memory: 298KiB](https://img.shields.io/badge/Total%20Memory-279.9%20KiB-blue)
 
@@ -62,6 +63,6 @@ Platform Info:
 
 ## Previous Years
 
-- [![2024: 50/50](https://img.shields.io/badge/2024-50/50-spring)](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2024/Summary.md)
-- [![2023: 45/50](https://img.shields.io/badge/2023-45/50-yellow)](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2023/Summary.md)
-- [![2022: 28/50](https://img.shields.io/badge/2022-28/50-yellow)](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2022/Summary.md)
+- [![2024: 50/50](https://img.shields.io/badge/🎄2024-⭐50/50-forestgreen?labelColor=darkred)](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2024/Summary.md)
+- [![2023: 45/50](https://img.shields.io/badge/🎄2023-⭐45/50-darkviolet?labelColor=darkred)](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2023/Summary.md)
+- [![2022: 28/50](https://img.shields.io/badge/🎄2022-⭐28/50-darkviolet?labelColor=darkred)](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2022/Summary.md)

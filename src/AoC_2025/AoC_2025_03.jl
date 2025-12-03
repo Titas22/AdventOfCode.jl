@@ -11,10 +11,28 @@ module AoC_2025_03
         return inputs
     end
 
-    function solve_part_1(inputs)
-
-        return nothing
+    function max_jolts(line::AbstractString)::Int64
+        msd = lsd = '0';
+        n = length(line)
+        for ii = 1 : n - 1
+            # println("\nline[ii] = $(line[ii])")
+            # line[ii] < msd && continue
+            if line[ii] > msd
+                msd = line[ii]
+                lsd = line[ii+1]
+            end
+            # println("msd = $msd")
+            for jj = ii+1 : n
+                # println("msd = $msd | lsd = $lsd")
+                line[jj] > lsd || continue
+                msd = line[ii]
+                lsd = line[jj]
+            end
+        end
+        return (msd - '0') * 10 + lsd - '0'
     end
+
+    solve_part_1(lines) = sum(max_jolts.(lines))
 
     function solve_part_2(inputs)
 
@@ -38,4 +56,5 @@ module AoC_2025_03
     println("\nPart 1 answer: $(part1)")
     println("\nPart 2 answer: $(part2)\n")
 end
-lines = @getinputs(true, "", true)
+
+# 17694

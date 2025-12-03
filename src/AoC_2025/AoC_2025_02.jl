@@ -21,6 +21,8 @@ module AoC_2025_02
                 continue
             end
 
+            # If original range spans through different orders of magnitude - split them
+
             mid = 10^min_dig
             push!(ranges, from : mid-1)
 
@@ -37,80 +39,64 @@ module AoC_2025_02
         return ranges
     end
 
-    function solve_common(ranges::Vector{UnitRange{Int64}})
-
-        return ranges
-    end
-
-    function solve_part_1(ranges::Vector{UnitRange{Int64}})
-        count = 0
-        for range in ranges
-            for ii in range
-                ndigits = number_of_digits(ii)
-                ndigits % 2 == 1 && continue
-                half = ndigits ÷ 2
-                
-                (first, second) = divrem(ii, 10^half)
-                first == second || continue
-
-                count += ii
-
-            end
-        end
-
-        return count
-    end
-
-    function solve_part_2(ranges::Vector{UnitRange{Int64}})
+    function solve_common(ranges::Vector{UnitRange{Int64}}, is_part1::Bool)
         total = 0;
+        invalid_ids = Set{Int64}()
+        
         for rng in ranges
             ndig = number_of_digits(rng.start)
+            ndig > 1 || continue
+            empty!(invalid_ids)
 
-            invalid_ids = Set{Int}()
+            if is_part1
+                ndig % 2 == 0 || continue
+                dig_range = range(stop=ndig÷2, length=1)
+            else
+                dig_range = 1 : ndig÷2
+            end
 
-            println("$(rng.start) -> $(rng.stop)\n")
-            dig_range = 1 : ndig-1
+            # Loop through number of digits that could form a repeated sequence
             for n in dig_range
                 ndig % n == 0 || continue
 
-
-
-                reps = ndig ÷ n
-
+                # Get first n digits of the range ends to form min/max
                 d = 10^(ndig-n)
                 from = rng.start ÷ d
                 to = rng.stop ÷ d
 
+                # power to multiply value by to repeat the pattern, and how many repetitions
                 p = 10^n
-                println("d: $d")
-                println("$from -> $to")
+                reps = ndig ÷ n
+
+                # Loop through all sensible patterns that could be repeated
                 for pattern in from : to
+                    # Assemble repeated value
                     val = pattern
-                    for rep = 2 : reps
+                    for _ = 2 : reps
                         val *= p
                         val += pattern
                     end
 
-                    val in rng || continue
-                    val in invalid_ids && continue
+                    val in rng || continue # Make sure still in range
+                    val in invalid_ids && continue # Make sure not added yet (from different pattern length e.g. 1111 from 11 11 or from 1 1 1 1)
 
-                    push!(invalid_ids, val)
+                    push!(invalid_ids, val) # Store invalid id to not repeat
                     
                     total += val
                 end
             end
-
         end
 
         return total
     end
 
+    solve_part_1(ranges::Vector{UnitRange{Int64}})::Int64 = solve_common(ranges, true)
+    solve_part_2(ranges::Vector{UnitRange{Int64}})::Int64 = solve_common(ranges, false)
+
     function solve(btest::Bool = false; use_input_cache::Bool = false)::Tuple{Any, Any}
         lines  = @getinputs(btest, "", use_input_cache)
         
         inputs = parse_inputs(lines)
-
-        # (part1, part2) = solve_common(inputs)
 
         part1 = solve_part_1(inputs)
         part2 = solve_part_2(inputs)

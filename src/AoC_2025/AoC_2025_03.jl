@@ -14,16 +14,13 @@ module AoC_2025_03
     function max_jolts(line::AbstractString)::Int64
         msd = lsd = '0';
         n = length(line)
-        for ii = 1 : n - 1
-            # println("\nline[ii] = $(line[ii])")
-            # line[ii] < msd && continue
+        @inbounds for ii = 1 : n - 1
             if line[ii] > msd
                 msd = line[ii]
                 lsd = line[ii+1]
             end
-            # println("msd = $msd")
+            
             for jj = ii+1 : n
-                # println("msd = $msd | lsd = $lsd")
                 line[jj] > lsd || continue
                 msd = line[ii]
                 lsd = line[jj]
@@ -32,7 +29,13 @@ module AoC_2025_03
         return (msd - '0') * 10 + lsd - '0'
     end
 
-    solve_part_1(lines) = sum(max_jolts.(lines))
+    function solve_part_1(lines) 
+        jolts = 0
+        for line in lines
+            jolts += max_jolts(line)
+        end
+        return jolts
+    end
 
     function solve_part_2(inputs)
 

@@ -2,14 +2,15 @@ module AoC_2025_03
     using AdventOfCode
     const AoC = AdventOfCode
 
-    function max_jolts!(batteries::Vector{Char}, line::String)
+    function max_jolts!(batteries::Vector{UInt8}, line::String)
+        input = codeunits(line)
         num_batteries = lastindex(batteries)
-        min_dig = batteries[1] = line[1]
+        min_dig = batteries[1] = input[1]
         idx_min = cur_len= 1
-        len = lastindex(line)
+        len = lastindex(input)
 
         @inbounds for idx = 2 : len
-            dig = line[idx]
+            dig = input[idx]
 
             if dig <= min_dig
                 if cur_len < num_batteries
@@ -47,14 +48,14 @@ module AoC_2025_03
         p = 1
         tot = 0
         for val in Iterators.reverse(batteries)
-            tot += (val - '0') * p
+            tot += (val - 0x30) * p
             p *= 10
         end
         return tot
     end
 
     function solve_common(lines::Vector{String}, num_batteries::Int64)
-        batteries = fill('0', num_batteries)
+        batteries = fill(0x30, num_batteries)
         jolts = 0
         for line in lines
             jolts += max_jolts!(batteries, line)

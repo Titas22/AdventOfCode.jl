@@ -3,22 +3,21 @@ module AoC_2025_04
     const AoC = AdventOfCode
 
     function parse_inputs(lines::Vector{String})
-        return [lines[i][j] == '@' for i=1:length(lines), j=1:length(first(lines))]
-    end
-
-    function is_edge_accessible(edge)::Bool
-        edge[2, 1] || return false
-        return (sum(edge)-1) < 4
+        rows = length(lines)
+        cols = length(first(lines))
+        bpaper = falses(rows + 2, cols + 2)
+        for ii in 1 : rows
+            line = codeunits(lines[ii])
+            for jj in 1 : cols
+                bpaper[ii+1, jj+1] = line[jj] == 0x40
+            end
+        end
+        return bpaper
     end
 
     function is_paper_accessible(block)::Bool
         block[2, 2] || return false
         return (sum(block)-1) < 4
-    end
-
-    function try_remove_edge_paper!(edge)
-        is_edge_accessible(edge) || return
-        edge[2, 1] = false
     end
 
     function try_remove_paper!(block)
@@ -29,23 +28,11 @@ module AoC_2025_04
 
     function solve_part_1(bpaper)
         (n, m) = size(bpaper)
-        
-        accessible = falses(n, m)
-        accessible[1, 1] = bpaper[1, 1]
-        accessible[1, end] = bpaper[1, end]
-        accessible[end, 1] = bpaper[end, 1]
-        accessible[end, end] = bpaper[end, end]
 
-        rngRow = 2 : n-1
-        rngCol = 2 : m-1
-        for ii in rngRow
-            accessible[ii, 1] = is_edge_accessible(@view bpaper[ii-1:ii+1, 1:2])
-            accessible[ii, m] = is_edge_accessible(@view bpaper[ii-1:ii+1, m:-1:m-1])
-            accessible[1, ii] = is_edge_accessible((@view bpaper[1:2, ii-1:ii+1])')
-            accessible[n, ii] = is_edge_accessible((@view bpaper[m:-1:m-1, ii-1:ii+1])')
-            for jj in rngCol
-                accessible[ii, jj] = is_paper_accessible(@view bpaper[ii-1:ii+1, jj-1:jj+1])
-            end
+        accessible = falses(n, m)
+        for ii in 2 : n-1, jj in 2 : m-1
+            @inbounds block = @view bpaper[ii-1:ii+1, jj-1:jj+1]
+            accessible[ii, jj] = is_paper_accessible(block)
         end
 
         return sum(accessible)
@@ -55,24 +42,13 @@ module AoC_2025_04
         (n, m) = size(bpaper)
         num_bpaper = sum(bpaper)
 
-        # Can remove corners
-        bpaper[1, 1] = false
-        bpaper[1, end] = false
-        bpaper[end, 1] = false
-        bpaper[end, end] = false
-
         rngRow = 2 : n-1
         rngCol = 2 : m-1
         while true
             num_starting = sum(bpaper)
-            for ii in rngRow
-                try_remove_edge_paper!(@view bpaper[ii-1:ii+1, 1:2])
-                try_remove_edge_paper!(@view bpaper[ii-1:ii+1, m:-1:m-1])
-                try_remove_edge_paper!((@view bpaper[1:2, ii-1:ii+1])')
-                try_remove_edge_paper!((@view bpaper[m:-1:m-1, ii-1:ii+1])')
-                for jj in rngCol
-                    try_remove_paper!(@view bpaper[ii-1:ii+1, jj-1:jj+1])
-                end
+            for ii in rngRow, jj in rngCol
+                @inbounds block = @view bpaper[ii-1:ii+1, jj-1:jj+1]
+                try_remove_paper!(block)
             end
             sum(bpaper) == num_starting && break
         end

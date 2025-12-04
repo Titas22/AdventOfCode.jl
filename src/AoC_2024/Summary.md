@@ -20,7 +20,7 @@ include("./src/AoC_2024/AoC_2024_xx.jl") # use to run & re-run the actual script
 ```
 
 ## Summary
-![](https://img.shields.io/badge/2024-50/50-2300CC00)
+![50/50](https://img.shields.io/badge/🎄2024-⭐50/50-darkgreen?labelColor=darkred)
 ![](https://img.shields.io/badge/Total%20Run%20Time-747.2%20ms-purple)
 ![](https://img.shields.io/badge/Total%20Memory-2.716%20GiB-blue)
 
@@ -66,8 +66,3 @@ Platform Info:
 
     LLVM: libLLVM-16.0.6 (ORCJIT, skylake)
 ```
-
-
-## Previous Years
-- [![](https://img.shields.io/badge/2023-45/50-yellow)](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2023/Summary.md)
-- [![](https://img.shields.io/badge/2022-28/50-yellow)](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2022/Summary.md)

@@ -1,7 +1,7 @@
 # AdventOfCode.jl
 
 [![Julia](https://img.shields.io/badge/Julia-9558B2?style=flat&logo=Julia&logoColor=white)](https://julialang.org/)
-[![Total: 109](https://img.shields.io/badge/🎄AoC-⭐109-forestgreen?labelColor=darkred)](https://adventofcode.com/)
+[![Total: 111](https://img.shields.io/badge/🎄AoC-⭐111-forestgreen?labelColor=darkred)](https://adventofcode.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 [![ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://img.shields.io/badge/ColPrac-Contributor's%20Guide-blueviolet)](https://github.com/SciML/ColPrac)

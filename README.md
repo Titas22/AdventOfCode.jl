@@ -16,6 +16,13 @@ My [Advent of Code](https://adventofcode.com/) submissions in [Julia](https://ju
 include("./scripts/init.jl") # Run once to set up and activate the environment
 
 include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
+
+# Benchmarking - median times taken
+@benchmark (part1, part2) = AoC_2025_xx.solve(use_input_cache=false) # Full benchmark including parsing the file
+@benchmark (part1, part2) = AoC_2025_xx.solve(use_input_cache=true) # Algo only benchmark (cached inputs)
+
+# For profiling
+@profview for _ in 1:1000; AoC_2025_xx.solve(use_input_cache=true); end
 ```
 
 ## Summary

@@ -1,7 +1,7 @@
 # AdventOfCode.jl
 
 [![Julia](https://img.shields.io/badge/Julia-9558B2?style=flat&logo=Julia&logoColor=white)](https://julialang.org/)
-[![Total: 109](https://img.shields.io/badge/🎄AoC-⭐109-forestgreen?labelColor=darkred)](https://adventofcode.com/)
+[![Total: 111](https://img.shields.io/badge/🎄AoC-⭐111-forestgreen?labelColor=darkred)](https://adventofcode.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 [![ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://img.shields.io/badge/ColPrac-Contributor's%20Guide-blueviolet)](https://github.com/SciML/ColPrac)
@@ -16,6 +16,13 @@ My [Advent of Code](https://adventofcode.com/) submissions in [Julia](https://ju
 include("./scripts/init.jl") # Run once to set up and activate the environment
 
 include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
+
+# Benchmarking - median times taken
+@benchmark (part1, part2) = AoC_2025_xx.solve(use_input_cache=false) # Full benchmark including parsing the file
+@benchmark (part1, part2) = AoC_2025_xx.solve(use_input_cache=true) # Algo only benchmark (cached inputs)
+
+# For profiling
+@profview for _ in 1:1000; AoC_2025_xx.solve(use_input_cache=true); end
 ```
 
 ## Summary

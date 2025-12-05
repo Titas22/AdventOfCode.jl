@@ -37,7 +37,7 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 | 02 | [Gift Shop](https://adventofcode.com/2025/day/2) | 174.400 μs | 37.700 μs | 40.61 KiB | 39.39 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_02.jl) |
 | 03 | [Lobby](https://adventofcode.com/2025/day/3) | 332.900 μs | 173.350 μs | 36.04 KiB | 4.55 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_03.jl) |
 | 04 | [Printing Department](https://adventofcode.com/2025/day/4) | 667.400 μs | 531.100 μs | 362.90 KiB | 334.69 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_04.jl) |
-| 05 | [](https://adventofcode.com/2025/day/5) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 05 | [Cafeteria](https://adventofcode.com/2025/day/5) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_05.jl) |
 | 06 | [](https://adventofcode.com/2025/day/6) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 | 07 | [](https://adventofcode.com/2025/day/7) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 | 08 | [](https://adventofcode.com/2025/day/8) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |

@@ -3,8 +3,8 @@ module AoC_2025_06
     const AoC = AdventOfCode
 
     function solve_common(lines::Vector{String}, max_terms::Int64 = 4)
-        op_str = pop!(lines)
-        chmat = lines2charmat(lines)
+        op_str = codeunits(pop!(lines))
+        chmat = lines2bytemat(lines)
         n = length(lines)
 
         terms_1 = zeros(Int64, n)
@@ -15,12 +15,12 @@ module AoC_2025_06
         for idx in eachindex(op_str)
             op = op_str[idx]
 
-            if op != ' '
+            if op != UInt8(' ')
                 last_term = idx - op_offset - 2
                 tot_1 += b_multiply ? prod(terms_1) : sum(terms_1)
                 tot_2 += b_multiply ? prod(terms_2[1:last_term]) : sum(terms_2[1:last_term])
                 op_offset = idx - 1
-                b_multiply = op == '*'
+                b_multiply = op == UInt8('*')
                 terms_1 .= 0
                 terms_2 .= 0
             end
@@ -28,8 +28,8 @@ module AoC_2025_06
             idx_cur = idx - op_offset
             for ii in 1 : n
                 ch = chmat[ii, idx]
-                ch == ' ' && continue
-                val = ch - '0'
+                ch == UInt8(' ') && continue
+                val = ch - UInt8('0')
                 terms_2[idx_cur] *= 10
                 terms_2[idx_cur] += val
 

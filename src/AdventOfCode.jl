@@ -20,6 +20,22 @@ module AdventOfCode
     
     @export lines2charmat(a::Vector{<:AbstractString}) = [a[i][j] for i=1:length(a), j=1:length(first(a))]
 
+    @export function lines2bytemat(lines::Vector{<:AbstractString})
+        rows = length(lines)
+        cols = maximum(sizeof, lines)
+        @assert cols == minimum(sizeof, lines) "This function is meant for square inputs (num_rows == num_cols)"
+
+        mat = fill(UInt8(' '), (rows, cols))
+        for ii = eachindex(lines)
+            line = codeunits(lines[ii])
+            for jj in eachindex(line)
+                mat[ii, jj] = line[jj]
+            end
+        end
+
+        return mat
+    end
+
     @export function split_at_empty_lines(lines::Vector{String})::Vector{Vector{String}}
         inputs          = Vector{Vector{String}}()
         current_block    = String[]

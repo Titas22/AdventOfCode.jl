@@ -2,63 +2,42 @@ module AoC_2025_03
     using AdventOfCode
     const AoC = AdventOfCode
 
-    function max_jolts!(batteries::Vector{UInt8}, line::String)
+    function max_jolts(line::String, num_batteries::Int64)
         input = codeunits(line)
-        num_batteries = lastindex(batteries)
-        min_dig = batteries[1] = input[1]
-        idx_min = cur_len= 1
-        len = lastindex(input)
-
-        @inbounds for idx = 2 : len
-            dig = input[idx]
-
-            if dig <= min_dig
-                if cur_len < num_batteries
-                    cur_len += 1
-                    batteries[cur_len] = dig
-                    
-                    if dig != min_dig
-                        min_dig = dig
-                        idx_min = cur_len
-                    end
-                end
+        bank_length = lastindex(input)
+        jolts = 0
+        idx_max = 1
+        
+        @inbounds for idx_battery in 1 : num_batteries
+            max_digit = input[idx_max]
+            
+            if max_digit != UInt8('9')
+                idx_end = bank_length - num_batteries + idx_battery
                 
-                continue
+                for idx in idx_max + 1 : idx_end
+                    cur_digit = input[idx]
+                    
+                    cur_digit > max_digit || continue
+                    
+                    max_digit = cur_digit
+                    idx_max = idx
+
+                    max_digit == UInt8('9') && break
+                end
             end
-
-            down_to = num_batteries - len + idx
-            down_to = down_to < 1 ? 1 : down_to
-            idx_min = idx_min < down_to ? down_to : idx_min
-
-            for jj = idx_min-1 : -1 : down_to
-                batteries[jj] < dig || break
-                idx_min = jj
-            end
-
-            batteries[idx_min] = dig
-            cur_len = idx_min
-            min_dig = dig
-
-            for jj = idx_min : -1 : 1
-                batteries[jj] == min_dig || break
-                idx_min = jj
-            end
+            
+            idx_max += 1
+            jolts *= 10
+            jolts += max_digit - UInt8('0')
         end
 
-        p = 1
-        tot = 0
-        for val in Iterators.reverse(batteries)
-            tot += (val - 0x30) * p
-            p *= 10
-        end
-        return tot
+        return jolts
     end
 
     function solve_common(lines::Vector{String}, num_batteries::Int64)
-        batteries = fill(0x30, num_batteries)
         jolts = 0
         for line in lines
-            jolts += max_jolts!(batteries, line)
+            jolts += max_jolts(line, num_batteries)
         end
         return jolts
     end

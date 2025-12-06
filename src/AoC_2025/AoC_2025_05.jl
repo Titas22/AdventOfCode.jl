@@ -53,11 +53,6 @@ module AoC_2025_05
         return ranges
     end
 
-    function solve_common(inputs)
-
-        return inputs
-    end
-
     function solve_part_1(fresh_ranges, available_ingredients)
         tot = 0
         for id in available_ingredients

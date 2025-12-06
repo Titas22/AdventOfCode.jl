@@ -3,17 +3,17 @@ module AoC_2025_05
     const AoC = AdventOfCode
 
     function parse_inputs(lines::Vector{String})
-
-        inputs = split_at_empty_lines(lines)
+        idx_split = findfirst(x->x=="", lines)
 
         fresh_ranges = UnitRange{Int64}[]
-        sizehint!(fresh_ranges, length(inputs[1]))
+        sizehint!(fresh_ranges, length(idx_split-1))
 
-        for str_range in inputs[1]
-            (str_from, str_to) = split(str_range, '-')
+        for idx in 1 : idx_split-1
+            str_range = lines[idx]
+            idx = findfirst(x->x=='-', str_range)
 
-            from = parse_int_ascii(str_from)
-            to = parse_int_ascii(str_to)
+            from = parse_int_ascii(str_range[1 : idx-1])
+            to = parse_int_ascii(str_range[idx+1 : end])
 
             push!(fresh_ranges, from : to)
         end
@@ -21,8 +21,9 @@ module AoC_2025_05
         merge_ranges!(fresh_ranges)
 
         available_ingredients = Int64[]
-        sizehint!(available_ingredients, lastindex(inputs[2]))
-        for str_id in inputs[2]
+        sizehint!(available_ingredients, lastindex(lines) - idx_split)
+        for idx in idx_split+1 : lastindex(lines)
+            str_id = lines[idx]
             push!(available_ingredients, parse_int_ascii(str_id))
         end
 

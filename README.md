@@ -1,6 +1,6 @@
 # AdventOfCode.jl
 
-[![Julia 1.12.1](https://img.shields.io/badge/Julia-1.12.1-9558B2?style=flat&logo=Julia&logoColor=white)](https://julialang.org/)
+[![Julia 1.12.2](https://img.shields.io/badge/Julia-1.12.2-9558B2?style=flat&logo=Julia&logoColor=white)](https://julialang.org/)
 [![Total: 113](https://img.shields.io/badge/🎄AoC-⭐113-forestgreen?labelColor=darkred)](https://adventofcode.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
@@ -54,8 +54,8 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 The benchmarks have been measured on this machine:
 
 ```Bash
-Julia Version 1.12.1
-Commit ba1e628ee4 (2025-10-17 13:02 UTC)
+Julia Version 1.12.2
+Commit ca9b6662be (2025-11-20 16:25 UTC)
 Platform Info:
     Model:  MSI GE66 Raider 10SFS
     OS:     Windows 11 Home 64-bit (10.0, Build 26100)

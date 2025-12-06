@@ -42,17 +42,19 @@ end
 
 const _input_cache = Dict{String,Vector{String}}()
 
+_clear_input_cache() = empty!(_input_cache)
+
 @export function getinputs(day::Integer, year::Integer = DEFAULT_YEAR, btest::Bool = false, extra::AbstractString = ""; use_cache::Bool = USE_INPUTS_CACHE)::Vector{String}
     filepath = _year_day_inputs_path(day, year, btest, extra);
 
     if use_cache && haskey(_input_cache, filepath)
-        return _input_cache[filepath]
+        return copy(_input_cache[filepath])
     end
     
     isfile(filepath) || _download_inputs(day, year, btest);
 
     lines = fast_readlines(filepath)
-    _input_cache[filepath] = lines
+    _input_cache[filepath] = copy(lines)
     return lines
 
 end

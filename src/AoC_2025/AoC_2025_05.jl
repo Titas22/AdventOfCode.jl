@@ -18,10 +18,36 @@ module AoC_2025_05
             push!(fresh_ranges, from : to)
         end
 
+        merge_ranges!(fresh_ranges)
+
         available_ingredients = parse_int_ascii.(inputs[2])
 
         return (fresh_ranges, available_ingredients)
     end
+
+    function merge_ranges!(ranges::Vector{UnitRange{Int}})
+        sort!(ranges; by = first)
+
+        idx_merged = 1
+        r_merged = ranges[1]
+
+        @inbounds for idx in 2:lastindex(ranges)
+            r_current = ranges[idx]
+
+            if r_current.start <= r_merged.stop + 1
+                r_merged = r_merged.start : max(r_merged.stop, r_current.stop)
+            else
+                ranges[idx_merged] = r_merged
+                idx_merged += 1
+                r_merged = r_current
+            end
+        end
+        ranges[idx_merged] = r_merged
+        resize!(ranges, idx_merged)
+        
+        return ranges
+    end
+
     function solve_common(inputs)
 
         return inputs
@@ -36,21 +62,25 @@ module AoC_2025_05
                 break
             end
         end
+
         return tot
     end
 
-    function solve_part_2(fresh_ranges, available_ingredients)
+    function solve_part_2(fresh_ranges)
+        tot = 0
+        for rng in fresh_ranges
+            tot += rng.stop - rng.start + 1
+        end
 
-        return nothing
+        return tot
     end
 
     function solve(btest::Bool = false; use_input_cache::Bool = false)::Tuple{Any, Any}
         lines  = @getinputs(btest, "", use_input_cache)
-        # lines2      = @getinputs(btest, "_2") # Use if 2nd problem test case inputs are different
         (fresh_ranges, available_ingredients)      = parse_inputs(lines)
 
         part1       = solve_part_1(fresh_ranges, available_ingredients)
-        part2       = solve_part_2(fresh_ranges, available_ingredients)
+        part2       = solve_part_2(fresh_ranges)
 
         return (part1, part2);
     end
@@ -62,3 +92,4 @@ module AoC_2025_05
 end
 
 # 720
+# 357608232770687

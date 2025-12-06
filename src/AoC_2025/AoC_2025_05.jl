@@ -20,7 +20,11 @@ module AoC_2025_05
 
         merge_ranges!(fresh_ranges)
 
-        available_ingredients = parse_int_ascii.(inputs[2])
+        available_ingredients = Int64[]
+        sizehint!(available_ingredients, lastindex(inputs[2]))
+        for str_id in inputs[2]
+            push!(available_ingredients, parse_int_ascii(str_id))
+        end
 
         return (fresh_ranges, available_ingredients)
     end

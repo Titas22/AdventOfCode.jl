@@ -28,8 +28,8 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 ## Summary
 
 ![12/24](https://img.shields.io/badge/🎄2025-⭐12/24-royalblue?labelColor=darkred)
-![Runtime: 2.942ms](https://img.shields.io/badge/Total%20Run%20Time-2.942%20ms-purple)
-![Memory: 1548.4KiB](https://img.shields.io/badge/Total%20Memory-1548.4%20KiB-blue)
+![Runtime: 1.999ms](https://img.shields.io/badge/Total%20Run%20Time-1.999%20ms-purple)
+![Memory: 856.3KiB](https://img.shields.io/badge/Total%20Memory-856.3%20KiB-blue)
 
 | Day | Problem | Total Time | Time (algo) | Total Memory | Memory (algo) | Source |
 |----:|:----------------:|:-----:|:------------:|:-----:|:------------:|:------:|
@@ -38,7 +38,7 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 | 03 | [Lobby](https://adventofcode.com/2025/day/3) | 216.900 μs | 58.500 μs | 35.90 KiB | 4.41 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_03.jl) |
 | 04 | [Printing Department](https://adventofcode.com/2025/day/4) | 667.400 μs | 531.100 μs | 362.90 KiB | 334.69 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_04.jl) |
 | 05 | [Cafeteria](https://adventofcode.com/2025/day/5) | 271.100 μs | 68.600 μs | 96.63 KiB | 39.03 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_05.jl) |
-| 06 | [Trash Compactor](https://adventofcode.com/2025/day/6) | 1.175 ms | 1.022 ms | 755.00 KiB | 735.14 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_06.jl) |
+| 06 | [Trash Compactor](https://adventofcode.com/2025/day/6) | 249.200 μs | 81.500 μs | 120.49 KiB | 100.60 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_06.jl) |
 | 07 | [](https://adventofcode.com/2025/day/7) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 | 08 | [](https://adventofcode.com/2025/day/8) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 | 09 | [](https://adventofcode.com/2025/day/9) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |

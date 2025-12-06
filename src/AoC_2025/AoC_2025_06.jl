@@ -2,35 +2,14 @@ module AoC_2025_06
     using AdventOfCode
     const AoC = AdventOfCode
 
-    function solve_part_1(lines::Vector{String})
-        inputs = (line->parse_int_ascii.(split(strip(line), r"\s+"))).(lines[1:end-1])
-        ops = (line->split(strip(line), r"\s+")).(lines[end])
-
-        n = length(inputs)
-        terms = zeros(Int64, n)
-        tot = 0
-        for idx in eachindex(ops)
-            for ii in 1 : n
-                terms[ii] = inputs[ii][idx]
-            end
-
-            if ops[idx] == "*"
-                tot += prod(terms)
-            else #if ops[idx] == "+"
-                tot += sum(terms)
-            end
-        end
-
-        return tot
-    end
-
-    function solve_part_2(lines::Vector{String}, max_terms::Int64 = 4)
+    function solve_common(lines::Vector{String}, max_terms::Int64 = 4)
         op_str = pop!(lines)
         chmat = lines2charmat(lines)
         n = length(lines)
 
-        terms = zeros(Int64, max_terms)
-        tot = op_offset = 0
+        terms_1 = zeros(Int64, n)
+        terms_2 = zeros(Int64, max_terms)
+        tot_1 = tot_2 = op_offset = 0
         b_multiply = false
 
         for idx in eachindex(op_str)
@@ -38,32 +17,38 @@ module AoC_2025_06
 
             if op != ' '
                 last_term = idx - op_offset - 2
-                tot += b_multiply ? prod(terms[1:last_term]) : sum(terms[1:last_term])
+                tot_1 += b_multiply ? prod(terms_1) : sum(terms_1)
+                tot_2 += b_multiply ? prod(terms_2[1:last_term]) : sum(terms_2[1:last_term])
                 op_offset = idx - 1
-                b_multiply = op == '*'   
-                terms .= 0
+                b_multiply = op == '*'
+                terms_1 .= 0
+                terms_2 .= 0
             end
 
             idx_cur = idx - op_offset
             for ii in 1 : n
                 ch = chmat[ii, idx]
                 ch == ' ' && continue
-                terms[idx_cur] *= 10
-                terms[idx_cur] += ch - '0'
+                val = ch - '0'
+                terms_2[idx_cur] *= 10
+                terms_2[idx_cur] += val
+
+                terms_1[ii] *= 10
+                terms_1[ii] += val
             end
         end
 
         last_term = length(op_str) - op_offset
-        tot += b_multiply ? prod(terms[1:last_term]) : sum(terms[1:last_term])
+        tot_1 += b_multiply ? prod(terms_1) : sum(terms_1)
+        tot_2 += b_multiply ? prod(terms_2[1:last_term]) : sum(terms_2[1:last_term])
 
-        return tot
+        return (tot_1, tot_2)
     end
 
     function solve(btest::Bool = false; use_input_cache::Bool = false)::Tuple{Any, Any}
         lines  = @getinputs(btest, "", use_input_cache)
 
-        part1       = solve_part_1(lines)
-        part2       = solve_part_2(lines)
+        (part1, part2) = solve_common(lines)
 
         return (part1, part2);
     end

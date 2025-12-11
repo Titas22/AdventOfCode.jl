@@ -39,7 +39,8 @@ module AoC_2025_07
     println("\nPart 2 answer: $(part2)\n")
 end
 
-#1638
+# 1638
+# 7759107121385
 
 lines = @getinputs(false)
 # chmat = lines2bytemat(lines)
@@ -51,15 +52,20 @@ idx_start = CartesianIndex((1, findfirst(x->x=='S', lines[1])))
 
 b_split = falses(size(chmat))
 b_visited = falses(size(chmat))
+n_visited = zeros(Int64, size(chmat))
 
 (n_rows, n_cols) = size(chmat)
-q = CircularDeque{CartesianIndex{2}}(n_cols)
+# q = CircularDeque{CartesianIndex{2}}(n_cols*n_cols*n_cols)
+q = CartesianIndex{2}[]
+sizehint!(q, n_cols*n_cols*n_cols)
 push!(q, idx_start)
 
 step = CartesianIndex((1, 0))
 side = CartesianIndex((0, 1))
-
+n_split = 1
+max_row = 0
 while !isempty(q)
+    global n_split, max_row
     idx = popfirst!(q)
     b_visited[idx] && continue
 
@@ -69,6 +75,7 @@ while !isempty(q)
 
     if next == '^'
         b_split[idx_next] = true
+        n_split += 1
         push!(q, idx_next + side)
         push!(q, idx_next - side)
     else
@@ -80,4 +87,28 @@ while !isempty(q)
 end
 chmat[b_visited] .= '|'
 chmat
-count(b_split)
+(count(b_split), n_split)
+
+
+cur = zeros(Int64, n_cols)
+cur[idx_start[2]] = 1
+next = zeros(Int64, n_cols)
+for ii in 1 : n_rows-1
+    global cur, next
+    for jj in 1 : n_cols
+        global cur, next
+        n = cur[jj]
+        n == 0 && continue
+        ch = chmat[ii, jj]
+        if ch == '^'
+            next[jj-1] += n
+            next[jj+1] += n
+        else
+            next[jj] += n
+        end
+        cur[jj] = 0
+    end
+
+    (cur, next) = (next, cur)
+end
+sum(cur)

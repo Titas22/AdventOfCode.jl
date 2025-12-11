@@ -28,8 +28,8 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 ## Summary
 
 ![14/24](https://img.shields.io/badge/🎄2025-⭐14/24-royalblue?labelColor=darkred)
-![Runtime: 2.229ms](https://img.shields.io/badge/Total%20Run%20Time-2.229%20ms-purple)
-![Memory: 976.5KiB](https://img.shields.io/badge/Total%20Memory-976.5%20KiB-blue)
+![Runtime: 2.202ms](https://img.shields.io/badge/Total%20Run%20Time-2.202%20ms-purple)
+![Memory: 953.1KiB](https://img.shields.io/badge/Total%20Memory-953.1%20KiB-blue)
 
 | Day | Problem | Total Time | Time (algo) | Total Memory | Memory (algo) | Source |
 |----:|:----------------:|:-----:|:------------:|:-----:|:------------:|:------:|
@@ -39,7 +39,7 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 | 04 | [Printing Department](https://adventofcode.com/2025/day/4) | 667.400 μs | 531.100 μs | 362.90 KiB | 334.69 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_04.jl) |
 | 05 | [Cafeteria](https://adventofcode.com/2025/day/5) | 271.100 μs | 68.600 μs | 96.63 KiB | 39.03 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_05.jl) |
 | 06 | [Trash Compactor](https://adventofcode.com/2025/day/6) | 249.200 μs | 81.500 μs | 120.49 KiB | 100.60 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_06.jl) |
-| 07 | [Laboratories](https://adventofcode.com/2025/day/7) | 229.500 μs | 89.300 μs | 120.17 KiB | 91.49 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_07.jl) |
+| 07 | [Laboratories](https://adventofcode.com/2025/day/7) | 186.600 μs | 32.300 μs | 39.22 KiB | 10.54 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_07.jl) |
 | 08 | [Playground](https://adventofcode.com/2025/day/8) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 | 09 | [Movie Theater](https://adventofcode.com/2025/day/9) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 | 10 | [Factory](https://adventofcode.com/2025/day/10) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |

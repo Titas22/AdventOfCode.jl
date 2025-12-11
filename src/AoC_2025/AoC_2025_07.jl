@@ -1,24 +1,24 @@
 module AoC_2025_07
     using AdventOfCode
     const AoC = AdventOfCode
-    
+
     function solve_common(lines::Vector{String})
-        chmat = lines2charmat(lines)
         idx_start = findfirst(x->x=='S', lines[1])
+        n_rows = lastindex(lines)
+        n_cols = lastindex(lines[1])
 
-        b_split = falses(size(chmat))
-        (n_rows, n_cols) = size(chmat)
+        b_split = falses(n_rows, n_cols)
 
-        b_split = falses(size(chmat))
         cur = zeros(Int64, n_cols)
         cur[idx_start] = 1
         next = zeros(Int64, n_cols)
-        for ii in 1 : n_rows-1
+        @inbounds for ii in 1 : n_rows-1
+            line = codeunits(lines[ii])
             for jj in 1 : n_cols
                 n = cur[jj]
                 n == 0 && continue
-                ch = chmat[ii, jj]
-                if ch == '^'
+                ch = line[jj]
+                if ch == UInt8('^')
                     b_split[ii, jj] = true
                     next[jj-1] += n
                     next[jj+1] += n

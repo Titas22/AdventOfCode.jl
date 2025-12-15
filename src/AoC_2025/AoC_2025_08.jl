@@ -14,7 +14,6 @@ module AoC_2025_08
         idxA::Int64
         idxB::Int64
     end
-
     Base.isless(a::Connection, b::Connection) = a.distance < b.distance
 
     function JunctionBox(line::AbstractString)::JunctionBox
@@ -36,11 +35,17 @@ module AoC_2025_08
     end
 
     function parse_inputs(lines::Vector{String}, to_connect::Int64)
-        boxes = JunctionBox.(lines)
-        n = Int64(lastindex(boxes))
+        n = lastindex(lines)
+
+        boxes = JunctionBox[]
+        sizehint!(boxes, n)
+
+        for line in lines
+            push!(boxes, JunctionBox(line))
+        end
 
         heap = BinaryMaxHeap{Connection}()
-        k = Int(to_connect)
+        k = to_connect
         heap_count = 0
 
         @inbounds for ii in 1:n
@@ -106,29 +111,17 @@ module AoC_2025_08
     function mst_max_edge_prim(boxes::Vector{JunctionBox})::Tuple{Int64, Int64}
         n = lastindex(boxes)
 
-        xs = Vector{Int64}(undef, n)
-        ys = Vector{Int64}(undef, n)
-        zs = Vector{Int64}(undef, n)
-        @inbounds for ii in 1:n
-            b = boxes[ii]
-            xs[ii] = b.x
-            ys[ii] = b.y
-            zs[ii] = b.z
-        end
-
         in_tree = falses(n)
         best    = fill(typemax(Int64), n)
-        parent  = fill(Int64(0), n)
+        parent  = zeros(Int64, n)
 
-        best[1] = 0
-        max_u = Int64(0)
-        max_v = Int64(0)
-        max_w::Int64 = -1
+        best[1] = max_u = max_v = 0
+        max_w = -1
 
-        @inbounds for _ in 1:n
+        @inbounds for _ in 1 : n
             v = 0
             best_v = typemax(Int64)
-            for ii in 1:n
+            for ii in 1 : n
                 (!in_tree[ii] && best[ii] < best_v) || continue
                 best_v = best[ii]
                 v = ii
@@ -142,13 +135,11 @@ module AoC_2025_08
                 max_v = parent[v]
             end
 
-            xv = xs[v]; yv = ys[v]; zv = zs[v]
-            for u in 1:n
+            bv = boxes[v]
+            for u in 1 : n
                 in_tree[u] && continue
-                dx = xv - xs[u]
-                dy = yv - ys[u]
-                dz = zv - zs[u]
-                w = dx*dx + dy*dy + dz*dz
+                bu = boxes[u]
+                w = distance(bu, bv)
                 if w < best[u]
                     best[u] = w
                     parent[u] = v
@@ -172,7 +163,6 @@ module AoC_2025_08
         end
 
         best1 = best2 = best3 = 0
-
         @inbounds for c in conn_box_counts
             c == 0 && continue
             if c > best1
@@ -196,7 +186,7 @@ module AoC_2025_08
     end
 
     function solve(btest::Bool = false; use_input_cache::Bool = false)::Tuple{Any, Any}
-        to_connect = Int64(btest ? 10 : 1000)
+        to_connect = btest ? 10 : 1000
 
         lines = @getinputs(btest, "", use_input_cache)
         (boxes, connections) = parse_inputs(lines, to_connect)

@@ -1,7 +1,7 @@
 # AdventOfCode.jl
 
 [![Julia 1.12.2](https://img.shields.io/badge/Julia-1.12.2-9558B2?style=flat&logo=Julia&logoColor=white)](https://julialang.org/)
-[![Total: 117](https://img.shields.io/badge/🎄AoC-⭐117-forestgreen?labelColor=darkred)](https://adventofcode.com/)
+[![Total: 119](https://img.shields.io/badge/🎄AoC-⭐119-forestgreen?labelColor=darkred)](https://adventofcode.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 [![ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://img.shields.io/badge/ColPrac-Contributor's%20Guide-blueviolet)](https://github.com/SciML/ColPrac)
@@ -27,9 +27,9 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 
 ## Summary
 
-![14/24](https://img.shields.io/badge/🎄2025-⭐14/24-royalblue?labelColor=darkred)
-![Runtime: 2.202ms](https://img.shields.io/badge/Total%20Run%20Time-2.202%20ms-purple)
-![Memory: 953.1KiB](https://img.shields.io/badge/Total%20Memory-953.1%20KiB-blue)
+![16/24](https://img.shields.io/badge/🎄2025-⭐16/24-royalblue?labelColor=darkred)
+![Runtime: 6.288ms](https://img.shields.io/badge/Total%20Run%20Time-6.288%20ms-purple)
+![Memory: 1.103MiB](https://img.shields.io/badge/Total%20Memory-1.103%20MiB-blue)
 
 | Day | Problem | Total Time | Time (algo) | Total Memory | Memory (algo) | Source |
 |----:|:----------------:|:-----:|:------------:|:-----:|:------------:|:------:|
@@ -40,7 +40,7 @@ include("./src/AoC_2025/AoC_2025_xx.jl") # use to run & re-run the actual script
 | 05 | [Cafeteria](https://adventofcode.com/2025/day/5) | 271.100 μs | 68.600 μs | 96.63 KiB | 39.03 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_05.jl) |
 | 06 | [Trash Compactor](https://adventofcode.com/2025/day/6) | 249.200 μs | 81.500 μs | 120.49 KiB | 100.60 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_06.jl) |
 | 07 | [Laboratories](https://adventofcode.com/2025/day/7) | 186.600 μs | 32.300 μs | 39.22 KiB | 10.54 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_07.jl) |
-| 08 | [Playground](https://adventofcode.com/2025/day/8) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
+| 08 | [Playground](https://adventofcode.com/2025/day/8) | 4.086 ms | 3.909 ms | 203.58 KiB | 140.33 KiB | [:white_check_mark:](https://github.com/Titas22/AdventOfCode.jl/blob/main/src/AoC_2025/AoC_2025_08.jl) |
 | 09 | [Movie Theater](https://adventofcode.com/2025/day/9) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 | 10 | [Factory](https://adventofcode.com/2025/day/10) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |
 | 11 | [Reactor](https://adventofcode.com/2025/day/11) | - s | - s | - KiB | - KiB | [:x:](https://github.com/Titas22/AdventOfCode.jl/AdventOfCode.jl) |

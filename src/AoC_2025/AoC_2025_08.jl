@@ -3,9 +3,15 @@ module AoC_2025_08
     const AoC = AdventOfCode
 
     struct JunctionBox
-        x::Float64
-        y::Float64
-        z::Float64
+        x::Int64
+        y::Int64
+        z::Int64
+    end
+
+    struct Connection
+        distance::Int64
+        idxA::Int64
+        idxB::Int64
     end
 
     function JunctionBox(line::AbstractString)::JunctionBox
@@ -16,21 +22,14 @@ module AoC_2025_08
 
     function distance(a::JunctionBox, b::JunctionBox)::Int64
         return ((a.x - b.x)^2 + (a.y - b.y)^2 + (a.z - b.z)^2)
-        # return sqrt((a.x - b.x)^2 + (a.y - b.y)^2 + (a.z - b.z)^2)
     end
 
     function parse_inputs(lines::Vector{String})
         boxes = JunctionBox.(lines)
-        return boxes
-    end
-
-    function solve_common(boxes::Vector{JunctionBox}, to_connect::Int64)
         n = lastindex(boxes)
-        distances = zeros(n * (n-1) ÷ 2)
-        m = lastindex(distances)
 
-        idx_boxes = Tuple{Int, Int}[]
-        sizehint!(idx_boxes, m)
+        connections = Connection[]
+        sizehint!(connections, n * (n-1) ÷ 2)
 
         idx = 0
         for ii in 1 : n
@@ -38,88 +37,91 @@ module AoC_2025_08
             for jj in (ii+1) : n
                 idx += 1
                 b = boxes[jj]
-                distances[idx] = distance(a, b)
-                push!(idx_boxes, (ii, jj))
+                push!(connections, Connection(distance(a, b), ii, jj))
             end
         end
 
-        idx_sorted = sortperm(distances)
+        sort!(connections; by=x->x.distance)
 
-        box_circuit = collect(1 : n) .* -1 #zeros(Int64, m)
+        return (boxes, connections)
+    end
 
-        next_circuit = 1
-        to_subtract = 0
+    function add_connection!(box_circuit::Vector{Int64}, conn_box_counts::Dict{Int64, Int64}, conn::Connection, next_circuit::Int64)
+        idx = conn.idxA
+        jdx = conn.idxB
+        idx_conn = box_circuit[idx]
+        jdx_conn = box_circuit[jdx]
 
-        to_connect = 4792
-        idx_cur = 0
-        while to_connect > 0
-            idx_cur += 1
-            ii = idx_sorted[idx_cur]
-            idx = idx_boxes[ii][1]
-            jdx = idx_boxes[ii][2]
-            # println("To connect $(string(boxes[idx])) and $(string(boxes[jdx]))")
-            # println("To connect $(idx) and $(jdx). Left: $(to_connect)")
-            if box_circuit[idx] < 0
-                if box_circuit[jdx] < 0
-                    next_circuit += 1
-                    box_circuit[idx] = next_circuit
-                    box_circuit[jdx] = next_circuit
-                else
-                    box_circuit[idx] = box_circuit[jdx]
-                end
-            elseif box_circuit[jdx] < 0
-                box_circuit[jdx] = box_circuit[idx]
+        if idx_conn < 0
+            if jdx_conn < 0
+                next_circuit += 1
+                box_circuit[idx] = next_circuit
+                box_circuit[jdx] = next_circuit
+                conn_box_counts[next_circuit] = 2
             else
-                to_subtract += 1
-                to_replace = box_circuit[jdx]
-                replace_with = box_circuit[idx]
-                for jj in 1 : n
-                    box_circuit[jj] == to_replace || continue
-                    box_circuit[jj] = replace_with
+                box_circuit[idx] = jdx_conn
+                conn_box_counts[jdx_conn] += 1
+            end
+        elseif jdx_conn < 0
+            box_circuit[jdx] = idx_conn
+            conn_box_counts[idx_conn] += 1
+        elseif jdx_conn == idx_conn
+            # Nothing
+        else
+            to_replace = jdx_conn
+            replace_with = idx_conn
+            for jj in eachindex(box_circuit)
+                box_circuit[jj] == to_replace || continue
+                box_circuit[jj] = replace_with
+                conn_box_counts[replace_with] += 1
+            end
+            pop!(conn_box_counts, to_replace)
+        end
+
+        return next_circuit
+    end
+
+    function solve_common(boxes::Vector{JunctionBox}, connections::Vector{Connection}, to_connect::Int64)
+        box_circuit = collect(1 : lastindex(boxes)) .* -1
+        next_circuit = 0
+
+        conn_box_counts = Dict{Int64, Int64}()
+        conn_box_counts[2] = 0 # To make it not quit the loop on 1st iteration
+
+        for idx_cur in 1 : to_connect
+            conn = connections[idx_cur]
+            next_circuit = add_connection!(box_circuit, conn_box_counts, conn, next_circuit)
+
+            length(conn_box_counts) == 1 && break;
+        end
+
+        p1 = collect(values(conn_box_counts))
+        partialsort!(p1, 1:3; order=Base.Reverse)
+
+        idx_cur = to_connect
+        while true
+            idx_cur += 1
+            conn = connections[idx_cur]
+            next_circuit = add_connection!(box_circuit, conn_box_counts, conn, next_circuit)
+
+            if length(conn_box_counts) == 1
+                if all(box_circuit .> 0)
+                    break;
                 end
             end
-            to_connect -= 1
         end
+        last_con = connections[idx_cur]
+        p2 = boxes[last_con.idxA].x * boxes[last_con.idxB].x
 
-        ii = idx_sorted[idx_cur]
-        idx = idx_boxes[ii][1]
-        jdx = idx_boxes[ii][2]
-
-        box_circuit
-
-        circuits_box = zeros(Int64, n)
-        for ii in 1 : n
-            circuit = box_circuit[ii]
-            circuit > 0 || continue
-            idx = idx_boxes[ii]
-            circuits_box[idx[1]] = circuit
-            circuits_box[idx[2]] = circuit
-        end
-
-
-        # println("Unique circuits: $(length(unique(box_circuit)))")
-
-
-        circuit_counts = zeros(Int64, next_circuit)
-
-        for cc in box_circuit
-            # println(cc)
-            cc > 0 || continue
-            circuit_counts[cc] += 1
-        end
-
-        a = sort(circuit_counts; order=Base.Reverse)
-
-
-        return (prod(a[1:3]), $(Int64(boxes[idx].x * boxes[jdx].x)))
+        return (prod(p1[1:3]), p2)
     end
 
     function solve(btest::Bool = false; use_input_cache::Bool = false)::Tuple{Any, Any}
         lines  = @getinputs(btest, "", use_input_cache)
 
-        boxes = parse_inputs(lines)
+        (boxes, connections) = parse_inputs(lines)
 
-        (part1, part2)       = solve_common(boxes, btest ? 10 : 1000)
+        (part1, part2)       = solve_common(boxes, connections, btest ? 10 : 1000)
 
         return (part1, part2);
     end
@@ -132,3 +134,4 @@ end
 
 # 171503
 # 9069509600
+
